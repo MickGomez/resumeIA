@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
-    <title>Velocity</title>
+    <title>Inteligencia Artificial</title>
     <style>
         body, html {
             margin: 0;
@@ -12,6 +12,12 @@
             width: 100%;
             height: 100%;
             font-family: 'Roboto', sans-serif;
+            
+        }
+
+        #main-content {
+            min-height: calc(100vh - 60px); /* Asegúrate de que el contenido ocupe al menos la altura de la pantalla menos la altura del footer */
+            padding-bottom: 60px; /* Espacio para el footer */
         }
 
         .navbar {
@@ -40,7 +46,7 @@
 
         #effectArea {
             position: relative;
-            background: url('path_to_your_image.jpg') no-repeat center center fixed;
+            background: url('imagenes/pexels-philippedonn-1114688.jpg') no-repeat center center fixed;
             background-size: cover;
             height: 100vh;
             display: flex;
@@ -95,15 +101,24 @@
             color: #007BFF;
             border-color: #007BFF;
         }
+
+        .hero .buttons a.google-drive {
+            background-color: #0F9D58;
+            color: white;
+        }
+
+        .hero .buttons a.google-drive:hover {
+            background-color: #0A7F43;
+        }
+
         canvas {
             position: absolute;
             top: 0;
             left: 0;
+
         }
 
- 
 
-        
         .section {
             padding: 60px 20px;
             text-align: center;
@@ -127,42 +142,87 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-        }
+                }
 
         .card {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
             border-radius: 10px;
             padding: 20px;
             width: 300px;
             text-align: center;
-            transition: box-shadow 0.3s;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+                }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 123, 255, 0.05);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .card:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card img {
             width: 80px;
             height: 80px;
             margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
         }
 
         .card h3 {
-            font-weight: 100;
+            font-weight: 300;
             font-size: 24px;
             margin-bottom: 10px;
+            color: #333;
         }
 
         .card p {
-            font-weight: 100;
+            font-weight: 300;
             font-size: 16px;
-            color: #777;
+            color: #666;
+            line-height: 1.5;
         }
 
+        .card::after {
+            content: '→';
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: #007BFF;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+            transform: translateX(5px);
+        }
         .services {
-            background-color: #333;
+            background-color: #010101;
             color: white;
             padding: 60px 20px;
         }
@@ -187,7 +247,7 @@
         }
 
         .service-card {
-            background-color: #444;
+            background-color: #1a1a1a;
             border: none;
             border-radius: 10px;
             overflow: hidden;
@@ -237,8 +297,31 @@
         }
 
         .tabs {
+            max-width: 800px;
+            margin: 0 auto;
             padding: 60px 20px;
             text-align: center;
+        }
+
+        .tab-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        @media (min-width: 768px) {
+            .tab-image {
+                max-width: 80%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .tab-image {
+                max-width: 70%;
+            }
         }
 
         .tabs h2 {
@@ -259,6 +342,7 @@
             justify-content: center;
             gap: 10px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .tab-buttons button {
@@ -268,7 +352,7 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
 
         .tab-buttons button:hover {
@@ -356,131 +440,168 @@
         }
 
         .footer .copyright {
-            background-color: #333;
+            background-color: #010101;
             color: white;
             padding: 20px 0;
+            height: 60px;
+            line-height: 60px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            
         }
+
+        
     </style>
 </head>
 <body>
 
     <div class="navbar">
         <div class="logo">
-            <a href="#">VELOCITY</a>
+            <a href="#">INTELIGENCIA ARTIFICIAL</a>
         </div>
         <div class="menu">
-            <a href="#">Home</a>
-            <a href="#">Contact</a>
+            <a href="#">Inicio</a>
+            <a href="#contact">Contacto</a>
+            <a href="https://drive.google.com/" target="_blank">Google Drive</a>
         </div>
     </div>
     <div id="effectArea" class="hero">
-        <h1>THIS IS PREDICTION</h1>
-        <p>ESTO ES UNA PRUEBA PARA SENSOR DE CAMPO ELECTRICO</p>
+        <h1>DESCARGAS ATMOSFÉRICAS</h1>
+        <p>ESTO ES UN PROYECTO ENFOCADO EN LA PREDICCIÓN DE DESCARGAS ATMOSFÉRICAS EN ASUNCIÓN</p>
         <div class="buttons">
-            <a href="#" class="sign-up">SIGN UP</a>
-            <a href="#" class="learn-more">LEARN MORE</a>
+            <a href="https://drive.google.com/" target="_blank" class="sign-up">GOOGLE DRIVE</a>
+            <a href=" " target="_blank" class="learn-more">MÁS INFORMACIÓN</a>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="script.js"></script>
+    <canvas id="effectCanvas"></canvas>
+    
+
     </div>
     <div class="section">
-        <h2>WHAT WE DO</h2>
-        <p>THIS IS SOME TEXT INSIDE OF A DIV BLOCK.</p>
+        <h2>QUÉ HICIMOS</h2>
+        <p>EL PROYECTO SE DIVIDE EN 3 BLOQUES.</p>
         <div class="cards">
-            <div class="card">
-                <img src="icon1.png" alt="Graphic Design">
-                <h3>GRAPHIC DESIGN</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-            </div>
-            <div class="card">
-                <img src="icon2.png" alt="Awesome Code">
-                <h3>AWESOME CODE</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-            </div>
-            <div class="card">
-                <img src="icon3.png" alt="Free Template">
-                <h3>FREE TEMPLATE</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-            </div>
+            <a href="https://github.com/MickGomez/TP_Inteligencia_Artificial_Descargas_Atmosfericas" class="card" target="_blank">
+                <img src="imagenes/icon1.png" alt="Graphic Design">
+                <h3>CÓDIGO FUENTE</h3>
+                <p>El proyecto se desarrollo utilizando Jupyter Notebook, con el entorno Google Colab y Visual Studio Code.</p>
+            </a>
+            <a href="https://drive.google.com/drive/u/0/folders/1EBavwAyH4zATC1NQp4KWYxfu8bMouR6V" class="card" target="_blank">
+                <img src="imagenes/icon2.png" alt="Awesome Code">
+                <h3>DATOS</h3>
+                <p>Para realizar las predicciones se tomaron datos proveidos por la Dirección de Meterología e Hidrología.</p>
+            </a>
+            <a href="https://docs.google.com/your-documentation" class="card" target="_blank">
+                <img src="imagenes/icon3.png" alt="Free Template">
+                <h3>DOCUMENTACIÓN</h3>
+                <p>Procesos realizados a la hora de filtrar y predecir descargas atmosféricas en la ciudad de Asunción.</p>
+            </a>
         </div>
     </div>
-    <div class="services">
-        <h2>SERVICES</h2>
-        <p>THIS IS SOME TEXT INSIDE OF A DIV BLOCK.</p>
+    
+    <div class="tabs">
+        <h2>SECCIÓN DE IMÁGENES</h2>
+        <p>Imágenes extraídas de los Jupyter Notebooks.</p>
+        <div class="tab-buttons">
+            <button onclick="showTab('tab1')">ÑEEMBUCU</button>
+            <button onclick="showTab('tab2')">CONCEPCION</button>
+            <button onclick="showTab('tab3')">CENTRAL</button>
+            <button onclick="showTab('tab4')">ASUNCIÓN</button>
+        </div>
+        <div id="tab1" class="tab-content active">
+            <img src="imagenes/Neembucu.png" alt="Tab 1 Content" class="tab-image">
+            <h3>Heading</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+        </div>
+        <div id="tab2" class="tab-content">
+            <img src="imagenes/Concepcion.png" alt="Tab 2 Content" class="tab-image">
+            <h3>Heading</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+        </div>
+        <div id="tab3" class="tab-content">
+            <img src="imagenes/Central.png" alt="Tab 3 Content" class="tab-image">
+            <h3>Heading</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+        </div>
+        <div id="tab4" class="tab-content">
+            <img src="imagenes/Asuncion.png" alt="Tab 4 Content" class="tab-image">
+            <h3>Heading</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+        </div>
+    </div>
+
+    <div class="services" id="contact">
+        <h2>CONTACTOS</h2>
+        <p>PUEDES CONTACTAR A LOS 3 INTEGRANTES DEL PROYECTO.</p>
         <div class="service-cards">
             <div class="service-card">
                 <img src="service1.jpg" alt="Service One">
                 <div class="service-card-content">
-                    <h3>SERVICES ONE</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-                    <a href="#">LEARN MORE</a>
+                    <h3>MIGUEL GÓMEZ</h3>
+                    <p>Estudiante de Ingeniería Mecatrónica.</p>
+                    <p>Asunción - Paraguay.</p>
+                    <a href="#">SABER MÁS</a>
                 </div>
             </div>
             <div class="service-card">
                 <img src="service2.jpg" alt="Service Two">
                 <div class="service-card-content">
-                    <h3>SERVICES TWO</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-                    <a href="#">LEARN MORE</a>
+                    <h3>PAULO CÁCERES</h3>
+                    <p>Estudiante de Ingeniería Mecatrónica.</p>
+                    <p>Fernando de la Mora - Paraguay.</p>
+                    <a href="#">SABER MÁS</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="service2.jpg" alt="Service Two">
+                <div class="service-card-content">
+                    <h3>GUILLERMO BENÍTEZ</h3>
+                    <p>Estudiante de Ingeniería Mecatrónica.</p>
+                    <p>Fernando de la Mora - Paraguay.</p>
+                    <a href="#">SABER MÁS</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="tabs">
-        <h2>TAB SECTION</h2>
-        <p>THIS IS SOME TEXT INSIDE OF A DIV BLOCK.</p>
-        <div class="tab-buttons">
-            <button onclick="showTab('tab1')">TAB BUTTON 1</button>
-            <button onclick="showTab('tab2')">TAB BUTTON 2</button>
-            <button onclick="showTab('tab3')">TAB BUTTON 3</button>
-        </div>
-        <div id="tab1" class="tab-content active">
-            <img src="tab1.jpg" alt="Tab 1 Content">
-            <h3>Heading</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-        </div>
-        <div id="tab2" class="tab-content">
-            <img src="tab2.jpg" alt="Tab 2 Content">
-            <h3>Heading</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-        </div>
-        <div id="tab3" class="tab-content">
-            <img src="tab3.jpg" alt="Tab 3 Content">
-            <h3>Heading</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-        </div>
-    </div>
+
     <div class="footer">
         <div class="columns">
             <div class="column">
-                <h3>ABOUT VELOCITY</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+                <h3>ACERCA DE LA INGENIERÍA MECATRÓNICA</h3>
+                <p>Forma profesionales capaces de diseñar, fabricar y 
+                    automatizar sistemas mecatrónicos, así como desarrollar e implementar nuevas 
+                    tecnologías en equipos interdisciplinarios.</p>
             </div>
             <div class="column">
-                <h3>USEFUL LINKS</h3>
+                <h3>LINKS ÚTILES RELACIONADOS AL EQUIPO</h3>
                 <ul>
-                    <li><a href="#">Phasellus gravida semper nisi</a></li>
-                    <li><a href="#">Suspendisse nisl elit</a></li>
-                    <li><a href="#">Dellentesque habitant morbi</a></li>
-                    <li><a href="#">Etiam sollicitudin ipsum</a></li>
+                    <li><a href="https://www.una.py/" target="_blank">Universidad Nacional de Asunción</a></li>
+                    <li><a href="https://www.ing.una.py/" target="_blank">Facultad de Ingeniería - UNA</a></li>
+                    <li><a href="https://www.ing.una.py/?page_id=1533" target="_blank">Ingeniería Mecatrónica</a></li>
+                    <li><a href="http://www.meteorologia.gov.py/" target="_blank">Dirección de Meteorología e Hidrología</a></li>
                 </ul>
             </div>
+            
             <div class="column">
-                <h3>SOCIAL</h3>
+                <h3>RECURSOS ADICIONALES Y SITIOS DE INTERÉS</h3>
                 <ul>
-                    <li><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
-                    <li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
-                    <li><a href="#"><i class="fa fa-pinterest"></i>Pinterest</a></li>
-                    <li><a href="#"><i class="fa fa-google"></i>Google</a></li>
-                    <li><a href="#"><i class="fa fa-webflow"></i>Webflow</a></li>
-                </ul>
+                    <li><a href="https://www.nasa.gov/" target="_blank">NASA</a></li>
+                    <li><a href="https://www.ecmwf.int/" target="_blank">Centro Europeo de Pronósticos</a></li>
+                    <li><a href="https://www.wunderground.com/" target="_blank">Weather Underground</a></li>
+                    <li><a href="https://www.meteomatics.com/" target="_blank">Meteomatics</a></li>
+                <ul> 
             </div>
+           
         </div>
-        <div class="copyright">
-            <p>Copyright Velocity Inc. Made in Webflow.</p>
-        </div>
+
+            <div class="copyright">
+                <p>&copy; 2024 Descargas Atmosféricas | <a href="#">Política de Privacidad</a> | <a href="#">Términos de Servicio</a></p>
+            </div>
     </div>
+
+
+
     <script>
         function showTab(tabId) {
             var tabs = document.getElementsByClassName('tab-content');
@@ -490,5 +611,8 @@
             document.getElementById(tabId).classList.add('active');
         }
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
