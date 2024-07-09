@@ -1,5 +1,5 @@
 let points = [];
-const numPoints = 20; // Reducir el número de puntos
+const numPoints = 30; // Reducir el número de puntos
 const maxDist = 100;  // Aumentar la distancia máxima para conectar los puntos
 const maxDistM = 260;  // Aumentar la distancia máxima para conectar los puntos
 let referenceY = 0;
